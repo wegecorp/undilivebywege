@@ -4,7 +4,6 @@ const { Server } = require('socket.io');
 const { v4: uuidv4 } = require('uuid');
 const cors = require('cors');
 const path = require('path');
-const { networkInterfaces } = require('os');
 
 const app = express();
 const httpServer = createServer(app);
@@ -18,12 +17,6 @@ const io = new Server(httpServer, {
   allowEIO3: true,
   pingTimeout: 60000,
   pingInterval: 25000
-});
-
-// Add middleware to set ngrok header
-app.use((req, res, next) => {
-  res.setHeader('ngrok-skip-browser-warning', 'true');
-  next();
 });
 
 app.use(cors());
@@ -220,11 +213,8 @@ app.get('/health', (req, res) => {
   res.status(200).json({ status: 'ok' });
 });
 
+// Start server
 const PORT = process.env.PORT || 3000;
-
-// Update the listen call to use the PORT environment variable
 httpServer.listen(PORT, () => {
-  console.log(`\n=== Undi Live Server ===`);
-  console.log(`Server berjalan di port ${PORT}`);
-  console.log(`===============================\n`);
+  console.log(`Server is running on port ${PORT}`);
 }); 

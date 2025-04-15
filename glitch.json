@@ -1,0 +1,13 @@
+{
+  "start": "node server.js",
+  "install": "npm install",
+  "watch": {
+    "include": [
+      "**"
+    ],
+    "exclude": [
+      "node_modules",
+      ".git"
+    ]
+  }
+} 

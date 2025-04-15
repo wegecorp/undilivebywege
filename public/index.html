@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undi Live - Pembagian Nomor</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Undi Live</h1>
+            <p>Sistem Pembagian Nomor Real-time</p>
+            <p class="brand">by.wege</p>
+        </header>
+
+        <main>
+            <!-- Initial View -->
+            <div id="initialView" class="view">
+                <button id="createSessionBtn" class="btn primary">Buat Sesi Baru</button>
+                <div class="divider">atau</div>
+                <div class="join-form">
+                    <input type="text" id="sessionCode" placeholder="Masukkan Kode Sesi">
+                    <input type="text" id="userName" placeholder="Nama Anda">
+                    <button id="joinSessionBtn" class="btn secondary">Gabung Sesi</button>
+                </div>
+            </div>
+
+            <!-- Create Session View -->
+            <div id="createSessionView" class="view hidden">
+                <h2>Konfigurasi Sesi</h2>
+                <div class="config-form">
+                    <div class="form-group">
+                        <label for="minNumber">Nomor Terendah:</label>
+                        <input type="number" id="minNumber" value="1" min="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="maxNumber">Nomor Tertinggi:</label>
+                        <input type="number" id="maxNumber" value="100" min="1">
+                    </div>
+                    <button id="confirmCreateSessionBtn" class="btn primary">Buat Sesi</button>
+                    <button id="cancelCreateSessionBtn" class="btn secondary">Batal</button>
+                </div>
+            </div>
+
+            <!-- Session View -->
+            <div id="sessionView" class="view hidden">
+                <div class="session-header">
+                    <h2>Sesi: <span id="currentSessionCode"></span></h2>
+                </div>
+
+                <div class="session-info">
+                    <p id="distributionStatus" class="status-text">Menunggu...</p>
+                    <div id="adminControls" class="hidden">
+                        <button id="startDistributionBtn" class="btn primary">Mulai Pembagian Nomor</button>
+                        <div class="participants-container">
+                            <h3>Daftar Peserta</h3>
+                            <ul id="participantsList" class="participants-list"></ul>
+                        </div>
+                    </div>
+                    <p id="userNumberInfo" class="hidden">Nomor Anda: <span id="userNumber"></span></p>
+                </div>
+            </div>
+        </main>
+
+        <div id="errorToast" class="toast hidden"></div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="app.js"></script>
+</body>
+</html> 

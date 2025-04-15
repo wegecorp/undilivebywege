@@ -4,11 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Undi Live - Pembagian Nomor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <header>
+            <div class="logo-container">
+                <img src="logo.png" alt="Undi Live Logo" class="logo">
+            </div>
             <h1>Undi Live</h1>
             <p>Sistem Pembagian Nomor Real-time</p>
             <p class="brand">by.wege</p>
@@ -17,12 +23,25 @@
         <main>
             <!-- Initial View -->
             <div id="initialView" class="view">
-                <button id="createSessionBtn" class="btn primary">Buat Sesi Baru</button>
+                <button id="createSessionBtn" class="btn primary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    Buat Sesi Baru
+                </button>
                 <div class="divider">atau</div>
                 <div class="join-form">
-                    <input type="text" id="sessionCode" placeholder="Masukkan Kode Sesi">
-                    <input type="text" id="userName" placeholder="Nama Anda">
-                    <button id="joinSessionBtn" class="btn secondary">Gabung Sesi</button>
+                    <input type="text" id="sessionCode" placeholder="Masukkan Kode Sesi" autocomplete="off">
+                    <input type="text" id="userName" placeholder="Nama Anda" autocomplete="off">
+                    <button id="joinSessionBtn" class="btn secondary">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                            <polyline points="10 17 15 12 10 7"></polyline>
+                            <line x1="15" y1="12" x2="3" y2="12"></line>
+                        </svg>
+                        Gabung Sesi
+                    </button>
                 </div>
             </div>
 
@@ -38,8 +57,20 @@
                         <label for="maxNumber">Nomor Tertinggi:</label>
                         <input type="number" id="maxNumber" value="100" min="1">
                     </div>
-                    <button id="confirmCreateSessionBtn" class="btn primary">Buat Sesi</button>
-                    <button id="cancelCreateSessionBtn" class="btn secondary">Batal</button>
+                    <button id="confirmCreateSessionBtn" class="btn primary">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                        Buat Sesi
+                    </button>
+                    <button id="cancelCreateSessionBtn" class="btn secondary">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                        Batal
+                    </button>
                 </div>
             </div>
 
@@ -52,7 +83,12 @@
                 <div class="session-info">
                     <p id="distributionStatus" class="status-text">Menunggu...</p>
                     <div id="adminControls" class="hidden">
-                        <button id="startDistributionBtn" class="btn primary">Mulai Pembagian Nomor</button>
+                        <button id="startDistributionBtn" class="btn primary">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg>
+                            Mulai Pembagian Nomor
+                        </button>
                         <div class="participants-container">
                             <h3>Daftar Peserta</h3>
                             <ul id="participantsList" class="participants-list"></ul>

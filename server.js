@@ -19,6 +19,13 @@ const io = new Server(httpServer, {
   pingInterval: 25000
 });
 
+// Add middleware to set bypass headers
+app.use((req, res, next) => {
+  res.setHeader('bypass-tunnel-reminder', 'true');
+  res.setHeader('User-Agent', 'Custom-Client/1.0');
+  next();
+});
+
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 

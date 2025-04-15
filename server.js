@@ -20,6 +20,12 @@ const io = new Server(httpServer, {
   pingInterval: 25000
 });
 
+// Add middleware to set ngrok header
+app.use((req, res, next) => {
+  res.setHeader('ngrok-skip-browser-warning', 'true');
+  next();
+});
+
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -50,8 +56,8 @@ io.on('connection', (socket) => {
       participants: new Map(),
       usedNumbers: new Set(),
       admin: socket.id,
-      isDrawing: false,
-      drawStarted: false
+      isDistributing: false,
+      numbersDistributed: false
     };
     
     sessions.set(sessionCode, session);
@@ -214,32 +220,11 @@ app.get('/health', (req, res) => {
   res.status(200).json({ status: 'ok' });
 });
 
-// Start server
-const PORT = process.env.PORT || 3001;
-httpServer.listen(PORT, '0.0.0.0', () => {
-  const localIP = getLocalIP();
+const PORT = process.env.PORT || 3000;
+
+// Update the listen call to use the PORT environment variable
+httpServer.listen(PORT, () => {
   console.log(`\n=== Undi Live Server ===`);
   console.log(`Server berjalan di port ${PORT}`);
-  console.log(`Server siap untuk deploy ke Glitch!`);
-  console.log(`\nCara mengakses aplikasi:`);
-  console.log(`1. Dari komputer ini: http://localhost:${PORT}`);
-  console.log(`2. Dari komputer lain (dalam jaringan yang sama):`);
-  console.log(`   http://${localIP}:${PORT}`);
-  console.log(`\nPastikan semua komputer terhubung ke jaringan WiFi/LAN yang sama`);
   console.log(`===============================\n`);
-});
-
-// Tambahkan fungsi untuk mendapatkan IP lokal
-function getLocalIP() {
-  const nets = networkInterfaces();
-  
-  for (const name of Object.keys(nets)) {
-    for (const net of nets[name]) {
-      // Skip over non-IPv4 and internal (i.e. 127.0.0.1) addresses
-      if (net.family === 'IPv4' && !net.internal) {
-        return net.address;
-      }
-    }
-  }
-  return '127.0.0.1';
-} 
+}); 

@@ -1,10 +1,24 @@
 // Socket connection
-const socket = io();
+const socket = io({
+  extraHeaders: {
+    'ngrok-skip-browser-warning': 'true'
+  }
+});
 
 // Add connection status indicator
 const connectionStatus = document.createElement('div');
 connectionStatus.className = 'connection-status';
 document.body.appendChild(connectionStatus);
+
+// Add ngrok header to all fetch requests
+const originalFetch = window.fetch;
+window.fetch = function(url, options = {}) {
+  options.headers = {
+    ...options.headers,
+    'ngrok-skip-browser-warning': 'true'
+  };
+  return originalFetch(url, options);
+};
 
 // DOM Elements
 const initialView = document.getElementById('initialView');

@@ -1,3 +1,4 @@
 @echo off
-echo Starting Undi Live...
-npm start 
+echo Starting Undi Live Server...
+node server.js
+pause 

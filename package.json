@@ -5,8 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js",
-    "ngrok": "node ./node_modules/ngrok/bin/ngrok http 3000"
+    "dev": "nodemon server.js"
   },
   "engines": {
     "node": ">=18.0.0"
@@ -18,7 +17,6 @@
     "uuid": "^9.0.1"
   },
   "devDependencies": {
-    "nodemon": "^3.0.2",
-    "ngrok": "^5.0.0"
+    "nodemon": "^3.0.2"
   }
 }
